@@ -1,5 +1,5 @@
 
-class Square extends HTMLDivElement {
+class Square extends HTMLElement {
     constructor() {
         super()
         this.symbol = null;
@@ -13,6 +13,7 @@ class Square extends HTMLDivElement {
         let symbolLetter = this.createLetterElement(letter)
         this.appendChild(symbolLetter)
         this.symbol = letter
+        this.onSymbolChanged && this.onSymbolChanged()
     }
 
     createLetterElement(letter) {
@@ -22,5 +23,5 @@ class Square extends HTMLDivElement {
         return p
     }
 }
-customElements.define('square-shape', Square, { extends: 'div' });
+customElements.define('square-shape', Square, { extends: 'section' });
 export default Square;

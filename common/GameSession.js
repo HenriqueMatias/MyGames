@@ -1,10 +1,9 @@
 
 class GameSession {
     constructor(players){
-        this.participants = players
-        this.currentTurn = 0
-        this.rounds = 0 
-        window.gameSession = this
+        this.participants = players;
+        this.currentTurn = 0;
+        this.rounds = 0;
     }
 
     changeTurn() {

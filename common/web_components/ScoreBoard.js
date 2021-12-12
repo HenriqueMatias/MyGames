@@ -1,19 +1,20 @@
 
 export default class ScoreBoard extends HTMLElement {
-    constructor(playersList) {
+    constructor(players) {
         super()
-        this.playersList = playersList;
-        this.classList.add('score-board')
-        this.buildScoreBoard()
+        let self = this
+        self.playersList = players;
+        self.classList.add('score-board')
+        self.render();
     }
 
     buildPlayerScore(player) {
-        let playerScore = document.createElement('div');
-        let nameTitle = document.createElement('h2');
-        let scoreStatus = document.createElement('p');
+        const playerScore = document.createElement('div');
+        const nameTitle = document.createElement('h2');
+        const scoreStatus = document.createElement('p');
 
-        nameTitle.textContent = player.playerName;
-        scoreStatus.textContent = player.playerScore;
+        nameTitle.textContent = player.name;
+        scoreStatus.textContent = player.score;
 
         playerScore.addClass = 'player-score'
         playerScore.appendChild(nameTitle)
@@ -21,11 +22,21 @@ export default class ScoreBoard extends HTMLElement {
         return playerScore;
     }
 
-    buildScoreBoard() {
-        for (let player of this.playersList) {
+    render(players=[]) {
+    let playersList = players.length == 0 ? this.playersList : players;
+        
+        for (let player of playersList) {
             var newPlayerScore = this.buildPlayerScore(player)
             this.appendChild(newPlayerScore);
         }
+    }
+
+    renderScore(playersList) {
+        this.innerHTML = ""
+        for (let player of this.playersList) {
+            var newPlayerScore = this.buildPlayerScore(player)
+            this.appendChild(newPlayerScore);
+        } 
     }
 
     

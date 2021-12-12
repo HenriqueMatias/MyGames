@@ -1,28 +1,46 @@
-import Square from './common/web_components/shapes/square.js'
-import Board from './common/web_components/board.js'
-import ScoreBoard from './common/web_components/ScoreBoard.js'
-import Player from './common/Player.js'
-import GameSession from './common/GameSession.js'
-import { select } from './common/utils.js'
+import Square from './common/web_components/shapes/square.js';
+import Board from './common/web_components/board.js';
+import ScoreBoard from './common/web_components/ScoreBoard.js';
+import Player from './common/Player.js';
+import GameSession from './common/GameSession.js';
+import { select } from './common/utils.js';
+import gameSessionStore from './stores/game-session-store/index.js';
+import TicTacToe from './common/game-logic/TicTacToe.js';
 
-function onSquareClick(square) {
+const playersList = gameSessionStore.getPlayers();
+const board = new Board();
+const scoreBoard = new ScoreBoard(playersList);
+const ticTacToe = new TicTacToe();
+
+function onSquareClick(square, squareId) {
     return () => {
-        let currentSymbol = window.gameSession.getCurrentTurnPlayer().symbol
-        square.addSymbol(currentSymbol)
-        window.gameSession.changeTurn()
+        let currentTurnPlayer = gameSessionStore.getCurrentTurnPlayer();
+        let currentSymbol = currentTurnPlayer.symbol;
+        if (square.symbol !== null || ticTacToe.winner ==! undefined) {
+            return;
+        }
+        
+        square.addSymbol(currentSymbol);
+        ticTacToe.addSpot(squareId, currentSymbol)
+        if(ticTacToe.isThereAWinner(currentSymbol)) {
+            alert(`Player:${currentTurnPlayer.name} is the winner!` )
+            return;
+        }
+        gameSessionStore.dispatch('changeTurn');
+    }
+}
+
+function isThereAWinner(currentTurnPlayer,) {
+    
+    if(false) {
+        gameSessionStore.events.dispatch('increaseScore', currentTurnPlayer)
     }
 }
 
 var Game = function(elId) {
-    let playersList = [new Player("Luiz", "x"), new Player("Henrique", "o")]
-    let board = new Board();
-    let scoreBoard = new ScoreBoard(playersList)
-    let gameSession = new GameSession(playersList); //make global ? find alternatives?
     let squareList = createSquareList()
-    window.gameSession = gameSession;
 
     for(let square of squareList) {
-
         board.appendChild(square)
     }
 
@@ -53,9 +71,10 @@ function createSquareList() {
         if ([2,5,8].includes(i)) {
             topSquare.classList.add('middle')
         }
-        topSquare.addEventListener('click', onSquareClick(topSquare))
+        topSquare.addEventListener('click', onSquareClick(topSquare, i))
         squareList.push(topSquare)
     }
+    
     return squareList
 }
 

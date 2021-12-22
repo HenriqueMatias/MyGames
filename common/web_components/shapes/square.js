@@ -16,11 +16,20 @@ class Square extends HTMLElement {
         this.onSymbolChanged && this.onSymbolChanged()
     }
 
+    reset() {
+        this.innerHTML = '';
+        this.symbol = null;
+    }
+
     createLetterElement(letter) {
         let p = document.createElement('p')
         p.classList.add('symbol')
         p.textContent = letter
         return p
+    }
+
+    render() {
+        this.del
     }
 }
 customElements.define('square-shape', Square, { extends: 'section' });

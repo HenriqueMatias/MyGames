@@ -9,7 +9,14 @@ export default class StoreModel {
         self.status = 'resting';
         self.events = new PubSub();
 
-        self = this.replaceParametersIfTheyExistIn(options, self)
+        //self = this.replaceParametersIfTheyExistIn(options, self)
+        if(options.actions) {
+            self.actions = options.actions;
+        }
+
+        if(options.mutations) {
+            self.mutations = options.mutations;
+        }
 
         // Set our state to be a Proxy. We are setting the default state by 
         // checking the params and defaulting to an empty object if no default 
@@ -108,7 +115,7 @@ export default class StoreModel {
         let newState = self.mutations[mutationKey](self.state, payload);
         
         // Merge the old and new together to create a new state and set it
-        self.state = {...self.state, ...newState};
+        self.state = Object.assign(self.state, newState);
 
         return true;
     }

@@ -2,12 +2,11 @@
 export default class TicTacToe {
 
     constructor(availableSymbols = ['x','o']) {
-        this.matrix = {'x': [], 'o': []};
         this.winner = undefined;
     }
 
-    addSpot(spot, symbol) {
-        this.matrix[symbol].push(spot);
+    isADraw(matrix) {
+        return matrix["x"].length + matrix["o"].length === 9
     }
 
     getPossibleWinSpotsSequence() {
@@ -23,10 +22,10 @@ export default class TicTacToe {
         ]
     }
 
-    isThereAWinner(symbol) {
+    isThereAWinner(symbol, matrix) {
         let self = this;
         if( self.winner) { return self.winner }
-        let currentFilledSpots = self.matrix[symbol];
+        let currentFilledSpots = matrix[symbol];
         for(let winSequence of self.getPossibleWinSpotsSequence()) {
             if (self.doesContainsSequence(currentFilledSpots, winSequence)) {
                 self.winner = symbol;
@@ -38,6 +37,10 @@ export default class TicTacToe {
 
     doesContainsSequence(firstList, secondList) {
         return secondList.every((elem) => firstList.includes(elem) )
+    }
+
+    resetWinner() {
+        this.winner = undefined;
     }
 
 }

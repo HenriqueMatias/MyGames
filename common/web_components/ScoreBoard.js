@@ -22,23 +22,13 @@ export default class ScoreBoard extends HTMLElement {
         return playerScore;
     }
 
-    render(players=[]) {
-    let playersList = players.length == 0 ? this.playersList : players;
-        
+    render(playersList=this.playersList) {
+        this.innerHTML = ""
         for (let player of playersList) {
             var newPlayerScore = this.buildPlayerScore(player)
             this.appendChild(newPlayerScore);
         }
     }
-
-    renderScore(playersList) {
-        this.innerHTML = ""
-        for (let player of this.playersList) {
-            var newPlayerScore = this.buildPlayerScore(player)
-            this.appendChild(newPlayerScore);
-        } 
-    }
-
     
 }
 customElements.define('score-board', ScoreBoard, { extends: 'section' });

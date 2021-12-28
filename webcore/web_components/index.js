@@ -1,7 +1,7 @@
 import Form from './Form.js';
-import Board from './board.js';
+import Board from './Board.js';
 import ScoreBoard from './ScoreBoard.js';
-import Square from './square.js';
+import Square from './Square.js';
 import Button from './Button.js';
 import ModalPage from './ModalPage/ModalPage.js'
 

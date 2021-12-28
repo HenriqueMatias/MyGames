@@ -6,6 +6,7 @@ const {Form, Board, ScoreBoard, Square, ModalPage} = WebCore.Presentation.compon
 import { select, createElement } from '../../../webcore/utils.js';
 import gameSessionStore from './stores/game-session-store/index.js';
 import TicTacToe from '../game-logic/TicTacToe.js';
+import Player from '../game-logic/Player.js';
 
 const playersList = gameSessionStore.getPlayers();
 const board = new Board();

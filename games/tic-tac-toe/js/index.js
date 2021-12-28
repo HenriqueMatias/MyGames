@@ -1,30 +1,27 @@
-import Square from './webcore/web_components/shapes/square.js';
-import Board from './webcore/web_components/board.js';
-import ScoreBoard from './webcore/web_components/ScoreBoard.js';
-import { select, createElement } from './webcore/utils.js';
-import gameSessionStore from './stores/game-session-store/index.js';
-import TYPES from './stores/game-session-store/types.js';
 
-import TicTacToe from './games/TicTacToe/game-logic/TicTacToe.js';
-import ModalPage from './webcore/web_components/ModalPage/ModalPage.js'
-import Form from './webcore/web_components/Form.js'
-import Player from './common/Player.js'
+import WebCore from '../../../webcore/index.js';
+
+const {Form, Board, ScoreBoard, Square, ModalPage} = WebCore.Presentation.components;
+
+import { select, createElement } from '../../../webcore/utils.js';
+import gameSessionStore from './stores/game-session-store/index.js';
+import TicTacToe from '../game-logic/TicTacToe.js';
 
 const playersList = gameSessionStore.getPlayers();
 const board = new Board();
 const scoreBoard = new ScoreBoard(playersList);
 const ticTacToe = new TicTacToe();
-const modal = new ModalPage()
-const modalGameOptions = new ModalPage()
-modal.addChild(createForm())
+const modal = new ModalPage();
+const modalGameOptions = new ModalPage();
+modal.addChild(createForm());
 
 const startNewGameButton = createElement('button') ;
 const keepPlayingButton = createElement('button');
 startNewGameButton.innerHTML = "Start New Game";
 keepPlayingButton.innerHTML = "Keep Playing";
 
-startNewGameButton.classList.add('button')
-keepPlayingButton.classList.add('button')
+startNewGameButton.classList.add('button');
+keepPlayingButton.classList.add('button');
 keepPlayingButton.addEventListener('click', (e) => {
     e.preventDefault();
     gameSessionStore.dispatch("resetMatrix");
@@ -35,9 +32,9 @@ keepPlayingButton.addEventListener('click', (e) => {
 modalGameOptions.addChild(keepPlayingButton)
 modalGameOptions.addChild(startNewGameButton)
 
-gameSessionStore.events.subscribe("stateChange", (data) => {
+// gameSessionStore.events.subscribe("stateChange", (data) => {
 
-})
+// })
 
 const activateModalOptionsAfterMatch = (title) => {
     modalGameOptions.setTitle(title)
@@ -62,18 +59,18 @@ function createForm() {
 
     name1Label.textContent = "Player One"
     name2Label.textContent = "Player Two"
-    form.appendChild(name1Input)
-    form.appendChild(name1Label)
-    form.appendChild(name2Input)
-    form.appendChild(name2Label)
-    form.appendChild(button)
+    form.appendChild(name1Input);
+    form.appendChild(name1Label);
+    form.appendChild(name2Input);
+    form.appendChild(name2Label);
+    form.appendChild(button);
     form.classList.add('custom-form', 'w2-container')
 
     form.onSubmit = (values) => {
         const newPlayers = [new Player(values["playerOneName"], "x"), new Player(values["playerTwoName"], "o") ];
-        gameSessionStore.dispatch("addPlayers",{players: newPlayers})
-        scoreBoard.render(newPlayers)
-        modal.close()
+        gameSessionStore.dispatch("addPlayers",{players: newPlayers});
+        scoreBoard.render(newPlayers);
+        modal.close();
     }
     return form;
 }
@@ -145,13 +142,14 @@ function createSquareList() {
             topSquare.classList.add(positionClass)
         }
         if ([2,5,8].includes(i)) {
-            topSquare.classList.add('middle')
+            topSquare.classList.add('middle');
         }
-        topSquare.addEventListener('click', onSquareClick(topSquare, i))
-        squareList.push(topSquare)
+        topSquare.addEventListener('click', onSquareClick(topSquare, i));
+        squareList.push(topSquare);
     }
 
-    return squareList
+    return squareList;
 }
 
-var MyGame = new Game('#app');
+ var MyGame = new Game('#app');
+ export default MyGame;

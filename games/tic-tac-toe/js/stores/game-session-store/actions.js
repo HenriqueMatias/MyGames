@@ -1,7 +1,7 @@
 export default {
     
-    changeTurn(context) {
-        context.commit('changeTurn');
+    changeTurn(context, payload) {
+        context.commit('changeTurn', payload);
     },
     addPlayers(context, payload) {
         context.commit('addPlayers', payload);
@@ -12,4 +12,7 @@ export default {
     startNewMatch(context) {
         context.commit('startNewMatch');
     },
+    resetMatrix(context) {
+        context.commit('resetMatrix');
+    }
 };

@@ -1,5 +1,4 @@
-
-class Square extends HTMLElement {
+export default class Square extends HTMLElement {
     constructor() {
         super()
         this.symbol = null;
@@ -28,9 +27,6 @@ class Square extends HTMLElement {
         return p
     }
 
-    render() {
-        this.del
-    }
+    
 }
 customElements.define('square-shape', Square, { extends: 'section' });
-export default Square;

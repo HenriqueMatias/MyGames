@@ -1,5 +1,4 @@
-import StoreModel from "../../webcore/StoreModel.js";
-import TYPES from "./types.js";
+import StoreModel from "../../../../../webcore/StoreModel.js";
 
 export default class GameSessionStore extends StoreModel {
     
@@ -16,7 +15,7 @@ export default class GameSessionStore extends StoreModel {
         return this.state.players
     }
 
-    isANewMatch() {
-        return this.state.gameStatus == TYPES.GAME_STATUS_TYPES.NEW_MATCH
+    getMatrix(symbol=null) {
+        return symbol ? this.state.matrix[symbol] : this.state.matrix
     }
 }

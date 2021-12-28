@@ -1,8 +1,11 @@
 import TYPES from "./types.js";
+import stateDefault from "./state.js";
 
 export default {
-  changeTurn(state) {
+  changeTurn(state, payload) {
     let nextTurn = state.turn +1;
+    let {spotID, symbol} = payload;
+    state.matrix[symbol].push(spotID);  
     if( nextTurn < state.players.length ) {
         state.turn = nextTurn
         return state
@@ -28,12 +31,8 @@ export default {
     state.players = state.players.map((player) => player.score = 0)
     return state;
   },
-  startNewGame(state) {
-    state.gameStatus = TYPES.GAME_STATUS_TYPES.NEW_GAME;
-    return state;
-  },
-  startNewMatch(state) {
-    state.gameStatus = TYPES.GAME_STATUS_TYPES.NEW_MATCH;
+  resetMatrix(state) {
+    state.matrix = {'x': [], 'o': []};
     return state;
   }
 };

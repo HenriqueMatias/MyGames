@@ -3,6 +3,7 @@ import Board from './Board.js';
 import ScoreBoard from './ScoreBoard.js';
 import Square from './Square.js';
 import Button from './Button.js';
+import Card from './card.js';
 import ModalPage from './ModalPage/ModalPage.js'
 
 class Presentation {
@@ -13,7 +14,8 @@ class Presentation {
             Button: Button,
             Square: Square,
             Board: Board,
-            ModalPage: ModalPage
+            ModalPage: ModalPage,
+            Card: Card,
         }
     }
 }

@@ -1,4 +1,4 @@
-import PubSub from "./lib/PubSub.js";
+import PubSub from "../lib/PubSub.js";
 
 export default class StoreModel {
     constructor(options) {

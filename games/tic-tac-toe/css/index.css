@@ -3,18 +3,13 @@
     padding: 0px;
 }
 
+@font-face {
+    font-family: "GameTitleFont";
+    src: url("../fonts/Wearedimdam-OVL2O.ttf");
+}
+
 body {
-    background-color: darkgoldenrod;
-}
-
-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-header > h1 {
-    text-align: center;
+    background-color: burlywood;
 }
 
 #app {
@@ -102,10 +97,10 @@ header > h1 {
 }
 .modal-bg {
       position: absolute;
-      background: teal;
+      background: rgb(22, 22, 22);
+      opacity: 0.8;
       width: 100%;
       height: 100%;
-    
     }
 .modal-container {
       border-radius: 10px;
@@ -113,6 +108,8 @@ header > h1 {
       position: relative;
       padding: 30px;
       height: auto;
+      display: flex;
+      flex-direction: column;
     }
 .modal-close {
       position: absolute;
@@ -139,7 +136,7 @@ header > h1 {
     padding: 10px;
     width: 100%;
     padding: 10px;
-    width: 100%;
+    width: auto;
     text-align: center;
     height: 47px;
     border-color: black;
@@ -149,3 +146,65 @@ header > h1 {
     font-size: 20px;
     border-radius: 20px;
 }
+
+/* PAGES  */
+.start-page{
+    font-feature-settings: "rand" 0, "calt" 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.start-page h1 {
+    font-family: "GameTitleFont";
+    font-size: 8em;
+}
+
+/* SELECT PLAYERS */
+.select-local-players {
+    width: 700px;    
+}
+
+.player-selection-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-family: fantasy;
+}
+
+.player-selection-container h2{
+    font-family: fantasy;
+}
+
+.player-selection {
+    max-width: 270px;
+    max-height: 330px;
+    border-radius: 26px;
+    padding: 10px;
+}
+
+.player-selection:hover {
+    border: 5px solid black;
+}
+
+.player-selection-img {
+    width: 200px;
+}
+
+.box{
+    margin:25px;
+    width:300px;
+    height:250px;
+    background:#fff;
+    border: solid black;
+    border-color: black;
+    float:left;
+    overflow: hidden;
+  }
+  
+.box2{
+    width:350px;
+    border-width: 3px 3px 5px 5px;
+    border-radius:4% 95% 6% 95%/95% 4% 92% 5%;
+    transform: rotate(-2deg);
+  }

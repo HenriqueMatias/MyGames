@@ -1,7 +1,11 @@
 
 import WebCore from '../../../webcore/index.js';
+import { StartPage } from './pages/start.js';
+import { SelectLocalPlayersPage } from './pages/select-local-players.js';
+
 
 const {Form, Board, ScoreBoard, Square, ModalPage} = WebCore.Presentation.components;
+const App = WebCore.App;
 
 import { select, createElement } from '../../../webcore/utils.js';
 import gameSessionStore from './stores/game-session-store/index.js';
@@ -115,11 +119,20 @@ var Game = function(elId) {
         board.appendChild(square)
     }
     let app = select(elId)
-    app.appendChild(board)
-    app.appendChild(scoreBoard)
-    app.appendChild(modal)
-    app.appendChild(modalGameOptions)
-    modal.open()
+    // app.appendChild(board)
+    // app.appendChild(scoreBoard)
+    // app.appendChild(modal)
+    // app.appendChild(modalGameOptions)
+    // modal.open()
+    // app.appendChild(new StartPage().render());
+
+    const config = {
+        pages: {
+            SELECT_LOCAL_PLAYER: SelectLocalPlayersPage,
+            START_PAGE: StartPage,
+        }
+    }
+    new App(app, config).start();
 }
 
 function getClassBasedOnPosition(position) {
